@@ -37,6 +37,19 @@
     }
 
 /*///////////////////////////////*/
+
+/*Gallery page    */
+    .equipment-zone {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .equipment-zone .pictures a {
+        width: 43%;
+    }
+
+/*///////////////////////////////*/
 }
 
 @media all and (max-width: 768px) {
@@ -61,5 +74,11 @@
         width: 90%;
     }
 
+/*///////////////////////////////*/
+
+/*Gallery page    */
+    .equipment-zone .pictures a {
+        width: 80%;
+    }
 /*///////////////////////////////*/
 }
