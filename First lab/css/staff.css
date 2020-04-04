@@ -1,0 +1,75 @@
+/*Staff-information section*/
+
+.staff_background {
+    background-image: url("../img/brique.webp");
+    background-size: 300px;
+    background-repeat: repeat;
+    /*background-size: cover;*/
+}
+
+.staff-information {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.staff-information .introduction {
+    padding-top: 30px;
+    margin-bottom: 30px;
+
+    color: white;
+    font-family: sans-serif;
+}
+
+.staff-information .introduction h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.staff-information .introduction p {
+    /*text-indent: 15px;*/
+    margin-bottom: 10px;
+}
+
+.personal-section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+}
+
+.personal-section img {
+    width: 40%;
+    height: auto;
+    margin: 10px;
+
+    border-radius: 20px;
+    box-shadow: white 0 0 10px;
+}
+
+.personal-section .person-info {
+    width: 50%;
+
+    color: white;
+    font-family: sans-serif;
+}
+
+.personal-section .person-info h2 {
+    text-transform: uppercase;
+}
+
+.personal-section .person-info h3 {
+    color: greenyellow;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.personal-section .person-info p {
+    text-indent: 20px;
+    margin-bottom: 5px;
+}
