@@ -1,0 +1,276 @@
+/*Stock preview section*/
+
+.stock_preview {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+    box-shadow: black 0 5px 10px;
+
+    background-image: url("../img/StockPreview.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+}
+
+.bt-left {
+    background-image: url("../img/left-arrow.png");
+}
+
+.bt-right {
+    background-image: url("../img/right-arrow.png");
+}
+
+.stock_preview_button {
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    border-radius: 5px;
+
+    background-color: rgba(173, 255, 47, 0.3);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    transition: all 0.3s ease;
+}
+
+.stock_preview_button:hover {
+    background-color: rgba(173, 255, 47, 0.7);
+    transform: scale(1.1, 1.1);
+    transition: all 0.3s ease;
+}
+
+.stock_preview_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.stock_preview_info h1 {
+    color: greenyellow;
+    font-family: sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    text-shadow: green 3px 5px 2px;
+}
+
+.stock_preview_info h1 span {
+    color: white;
+    text-shadow: gray 3px 5px 2px;
+}
+
+.stock_preview_info .enter_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 10px;
+    background-color: yellowgreen;
+    border-radius: 15px;
+    transition: all 0.5s ease;
+}
+
+.stock_preview_info h2 {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.stock_preview_info .enter_button_icon {
+    width: 27px;
+    height: 27px;
+    margin-left: 5px;
+    display: none;
+
+    background-image: url("../img/right-arrow.png");
+    background-size:70%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.enter_button:hover {
+    color: maroon;
+    box-shadow: green 0 0 10px;
+    transition: all 0.5s ease;
+}
+
+.enter_button:hover .enter_button_icon {
+    display: block;
+}
+
+/*Main advantages section*/
+
+.advantages {
+    position: relative;
+    background-image: url("../img/advantages_section.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.main_advantages_header {
+    font-family: sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+
+    color: maroon;
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.main_advantages {
+    height: auto;
+    width: 100%;
+    padding-bottom: 30px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.main_advantages_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 23%;
+    margin: 20px auto;
+}
+
+.main_advantages_item h2 {
+    font-family: sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+
+    color: maroon;
+    margin: 20px auto;
+}
+
+/*Comments section*/
+
+.comments {
+    position: relative;
+
+    background-image: url("../img/comment-section.jfif");
+    background-size: cover;
+    background-position: center;
+    box-shadow: black 0 -5px 10px;
+    z-index: 2;
+}
+
+.comment_header {
+    font-family: sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+
+    color: white;
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.comment_viewer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+
+}
+
+.bt-left-white {
+    background-image: url("../img/left-arrow-white.png");
+}
+
+.bt-right-white {
+    background-image: url("../img/right-arrow-white.png");
+}
+
+.comments_control {
+    height: 60px;
+    width: 60px;
+    margin: 5px;
+    border-radius: 5px;
+
+    background-color: rgba(128, 0, 0, 0.3) ;
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+}
+
+.comments_control:hover {
+    background-color: rgba(128, 0, 0, 0.7);
+    transform: scale(1.1, 1.1);
+    transition: all 0.3s ease;
+}
+
+.comment {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment img {
+    /*max-width: 300px;*/
+    width: 60%;
+    height: auto;
+    margin: 20px;
+
+    border-radius: 10px;
+    box-shadow: maroon 0 0 10px;
+}
+
+.comment-description {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.comment-description h2 {
+    color: white;
+    font-family: sans-serif;
+    font-size: bold;
+}
+
+.comment-description p {
+    color: white;
+    font-family: sans-serif;
+
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.comment-description span {
+    width: auto;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+
+    background-color: maroon;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.comment-description span:hover {
+    cursor: pointer;
+    box-shadow: maroon 0 0 10px;
+    transform: scale(1.05, 1.05);
+    transition: all 0.3s ease;
+}

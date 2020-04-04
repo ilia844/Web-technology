@@ -1,0 +1,32 @@
+@media all and (max-width: 960px) {
+
+/*Main page*/
+    .main_advantages_item {
+        width: 42%;
+    }
+
+    .comment {
+        flex-direction: column;
+    }
+
+    .comment img {
+        width: 100%;
+    }
+
+    .comment-description {
+        width: 100%;
+        align-items: center;
+    }
+}
+/*///////////////////////////////*/
+
+
+@media all and (max-width: 768px) {
+
+/*Main page*/
+    .main_advantages_item {
+        width: 80%;
+    }
+/*///////////////////////////////*/
+
+}
