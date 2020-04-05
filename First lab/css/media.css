@@ -70,6 +70,14 @@
     }
 
 /*///////////////////////////////*/
+
+/*Page with subscription prices*/
+
+.subscription-info {
+    width: 43%;
+}
+
+/*///////////////////////////////*/
 }
 
 @media all and (max-width: 768px) {
@@ -106,5 +114,17 @@
     .info-block img {
         width: 80%;
     }
+/*///////////////////////////////*/
+
+/*Page with subscription prices*/
+
+    .subscriptions {
+        justify-content: space-around;
+    }
+
+    .subscription-info {
+        width: 80%;
+    }
+
 /*///////////////////////////////*/
 }
