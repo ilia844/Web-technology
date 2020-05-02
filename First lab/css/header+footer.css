@@ -13,9 +13,13 @@
 /*HEADER*/
 
 .header {
+    position: relative;
+    z-index: 3;
+
     width: 100%;
     color: wheat;
     background-color: greenyellow;
+    box-shadow: yellowgreen 0 5px 10px;
 }
 
 /*Top-panel*/
@@ -99,9 +103,13 @@
 
 /*Footer*/
 footer {
+    position: relative;
+    z-index: 3;
+
     background-image: url("../img/footer.jpg");
     background-position: center;
     background-size: cover;
+    box-shadow: black 0 -5px 10px;
 }
 
 .footer {
