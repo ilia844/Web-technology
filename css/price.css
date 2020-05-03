@@ -1,0 +1,117 @@
+/*Price section*/
+
+.price-section_background {
+    background-image: url("../img/price-background1.jpg");
+    background-size: 250px;
+}
+
+.pricing-info {
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.pricing-info h1 {
+    color: white;
+    padding-top: 30px;
+    margin: 0 20px 50px 20px;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-shadow: black 0 0 10px;
+}
+
+
+.subscriptions {
+    width: 100%;
+    padding: 0 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.subscription-info {
+    width: 30%;
+    margin: 0 10px 30px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: wheat;
+
+
+    border-radius: 10px;
+    box-shadow: black 0 0 10px;
+    transition: all 0.3s ease;
+}
+
+.subscription-info:hover {
+    /*transform: scale(1.05);*/
+    box-shadow: maroon 0 0 20px ;
+}
+
+.subscription-info h3 {
+    padding: 10px 1px;
+    background-color: greenyellow;
+    text-transform: uppercase;
+}
+
+.subscription-info .price {
+    padding: 10px 0;
+    position: relative;
+
+    background-color: black;
+}
+
+.subscription-info .price .price-number {
+    color: white;
+    font-size: 60px;
+}
+
+.subscription-info .price .price-sign {
+    position: absolute;
+    left: 60%;
+
+    color: #999999;
+    font-weight: bold;
+}
+
+.subscription-info h4 {
+    margin: 20px auto;
+
+    color: maroon;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.subscription-info h5 {
+    padding: 10px;
+    margin: 10px auto 20px auto;
+    border: green solid 1px;
+    border-radius: 10px;
+
+    color: black;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: greenyellow;
+    transition: all 0.3s ease;
+}
+
+.subscription-info h5:hover {
+    transform: scale(1.1);
+    box-shadow: black 0 0 5px;
+}
+
+.pricing-info p {
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 20px 30px;
+    text-shadow: black 0 0 10px;
+}

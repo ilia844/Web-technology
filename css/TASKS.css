@@ -1,0 +1,38 @@
+/*Additional tasks*/
+.lab-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    text-align: center;
+
+    padding: 30px 0 20px 0;
+    margin: auto 5% 50px 5%;
+    border-bottom: black solid 2px;
+}
+
+.lab-section h1 {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    padding: 50px 30px 50px 30px;
+}
+
+.task_paragraph {
+    width: 80%;
+    font-size: 18px;
+    margin: 20px auto;
+}
+
+.task_solution {
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: black dashed 2px;
+}
+
+.task_solution .number_list {
+    width: 30px;
+}
+

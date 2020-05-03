@@ -1,0 +1,130 @@
+@media all and (max-width: 960px) {
+
+/*Main page*/
+    .main_advantages_item {
+        width: 42%;
+    }
+
+    .comment {
+        flex-direction: column;
+    }
+
+    .comment img {
+        width: 100%;
+    }
+
+    .comment-description {
+        width: 100%;
+        align-items: center;
+    }
+/*///////////////////////////////*/
+/*Staff page*/
+    .staff-information .introduction {
+        margin: auto 10%;
+        width: 80%;
+    }
+
+    .personal-section {
+        flex-direction: column;
+    }
+
+    .personal-section img {
+        width: 40%;
+    }
+
+    .personal-section .person-info {
+        width: 80%;
+    }
+
+/*///////////////////////////////*/
+
+/*Gallery page    */
+    .equipment-zone {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .equipment-zone .pictures a {
+        width: 43%;
+    }
+
+/*///////////////////////////////*/
+
+/*About company page*/
+    .block-1 {
+        flex-direction: column-reverse;
+    }
+
+    .block-2 {
+        flex-direction: column;
+    }
+
+    .info-block img {
+        width: 60%;
+        margin-bottom: 30px;
+    }
+
+    .info-block .text-info {
+        width: 100%;
+    }
+
+/*///////////////////////////////*/
+
+/*Page with subscription prices*/
+
+.subscription-info {
+    width: 43%;
+}
+
+/*///////////////////////////////*/
+}
+
+@media all and (max-width: 768px) {
+
+/*Main page*/
+    .main_advantages_item {
+        width: 80%;
+    }
+/*///////////////////////////////*/
+
+/*Staff page*/
+    .staff-information .introduction {
+        margin: auto 5%;
+        width: 90%;
+    }
+
+    .personal-section img {
+        width: 50%;
+    }
+
+    .personal-section .person-info {
+        width: 90%;
+    }
+
+/*///////////////////////////////*/
+
+/*Gallery page    */
+    .equipment-zone .pictures a {
+        width: 80%;
+    }
+/*///////////////////////////////*/
+
+/*About company page*/
+    .info-block img {
+        width: 80%;
+    }
+/*///////////////////////////////*/
+
+/*Page with subscription prices*/
+
+    .subscriptions {
+        justify-content: space-around;
+    }
+
+    .subscription-info {
+        width: 80%;
+    }
+
+/*///////////////////////////////*/
+}
