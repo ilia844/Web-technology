@@ -297,6 +297,79 @@
                 </div>
             </section>
 
+            <section id="lab5" class="lab-section">
+                <h1>Лабораторная работа №5</h1>
+                <p class="task_paragraph">
+                    Вариант 6: написать скрипт, получающий через форму e-mail пользователя,
+                    проверяющий его корректность и добавляющий его в таблицу БД в случае,
+                    если такого e-mail там ещё нет.
+                </p><br>
+                <form action="TASKS.php#lab5" method="POST" enctype='multipart/form-data' class="lab-form">
+                    Ваши иницыалы: <input type="text" name="userName"><br><br>
+                    Ваш email: <input type="text" name="userEmail"><br><br>
+                    Ваш сотовый номер: <input type="text" name="userContactNumber"><br><br>
+                    <input type='submit' name='add_owner' value='Занести данные в БД'>
+                </form>
+                <div class="task_solution">
+                    <?php
+                        function isCorrectEmail($strEmail) {
+                            $regEx = '/^[a-zA-Z0-9_+\-.]+@[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,4}$/';
+                            if (preg_match($regEx, $strEmail)) {
+                                return true;
+                            } else return false;
+                        }
+
+                        function isExistsEmail($objResult, $email) {
+                            $result = false;
+                            $objResult->data_seek(0);
+                            $i = 0;
+                            while ($row = $objResult->fetch_assoc()) {
+                                if (strcmp($row['email'], $email) == 0) {
+                                    //echo "email[" . $i++ . "] = " . $row['email'] . " - Уже существует в базе!<br>";
+                                    $result = true;
+                                }//else echo "email[" . $i++ . "] = " . $row['email'] . "<br>";
+                            }
+                            return $result;
+                        }
+
+                        if (isset($_POST['add_owner'])) {
+                            if (($_POST['userName'] != "")  && ($_POST['userEmail'] != "") && ($_POST['userContactNumber'] != "")) {
+                                $userName = $_POST['userName'];
+                                echo '<span style="color: green;">Инициалы: ', $userName, ";</span>";
+                                $userEmail = $_POST['userEmail'];
+                                echo '<span style="color: green;">EMAIL: ', $userEmail, ';</span>';
+                                $userContactNumber = $_POST['userContactNumber'];
+                                echo '<span style="color: green;">Телефон: ', $userContactNumber, ';</span><br>';
+
+                                if (isCorrectEmail($userEmail)) {
+                                    echo 'EMAIL введен корректно!<br><br>';
+                                    $mysqli = new mysqli("localhost", "root", "", "my_first_db");
+                                    if ($mysqli->connect_errno) {
+                                        echo "Не удалось подключится к MySQL: (" . $mysqli->connect_errno . ")" . $mysqli->connect_error;
+                                    } else {
+                                        $res = $mysqli->query("SELECT email FROM owners");
+                                        if (!isExistsEmail($res, $userEmail)) {
+                                            $query = "INSERT INTO owners VALUES(NULL, '$userName', '$userEmail', '$userContactNumber')";
+                                            $mysqli->query($query);
+                                            if ($mysqli->errno) {
+                                                echo "Не удалось занести данные в таблицу: (" . $mysqli->errno . ")" . $mysqli->error;
+                                            }
+                                            //Вывод таблицы
+                                            $res = $mysqli->query("SELECT * FROM owners");
+                                            $res->data_seek(0);
+                                            echo '<div>';
+                                            while ($row = $res->fetch_assoc()) {
+                                                echo $row['name'] . " | " . $row['email'] . " | " . $row['contact_number'] . "<br>";
+                                            }
+                                            echo '</div>';
+                                        } else echo 'EMAIL уже присутствует в таблице!';
+                                    }
+                                } else echo '<span style="color: red;">Введен некорректный EMAIL!</span>';
+                            } else echo '<span style="color: red;">Одно из полей не задано!</span>';
+                        }
+                    ?>
+                </div>
+            </section>
         </div>
     </main>
 
