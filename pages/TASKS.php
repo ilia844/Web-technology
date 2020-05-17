@@ -230,6 +230,52 @@
                     </form>
                 </div>
             </section>
+
+            <section id="lab4" class="lab-section">
+                <h1>Лабораторная работа №4</h1>
+                <p class="task_paragraph">
+                    Вариант 6: в произвольном тексте все e-mail адреса вывести красным цветом и привести к виду
+                    ссылки с параметром href равным "mailto:EMAIL". Дополнительно, в отдельном блоке вывести отдельно все e-mail адреса.
+                    Текст загружать из файла.
+                </p>
+                <form action="TASKS.php#lab4" method="POST" enctype='multipart/form-data' class="lab-form">
+                    Выберите файл: <input type="file" name="fileName"><br><br>
+                    <input type='submit' value='Загрузить'>
+                </form>
+                <div class="task_solution">
+                    <?php
+
+                        if ($_FILES && $_FILES['fileName']['error']== UPLOAD_ERR_OK)
+                        {
+                            $uploads_dir = '../../../../../bin/php/upload';
+                            $name = basename($_FILES['fileName']['name']);
+                            $tmp_name = $_FILES['fileName']['tmp_name'];
+                            move_uploaded_file($tmp_name, "$uploads_dir/$name");
+                            echo "Файл загружен<br><br>";
+
+                            $strFileInfo = file_get_contents("$uploads_dir/$name");
+                            unlink("$uploads_dir/$name");
+
+                            $regEx = '/\b[a-zA-Z0-9_+\-.]+@[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,4}\b/';
+                            $allEmails = array();
+                            preg_match_all($regEx, $strFileInfo, $allEmails);
+                            foreach ($allEmails[0] as $email) {
+                                $strFileInfo = str_replace($email, '<a href="mailto: ' . $email . '" style = "color: red;">' . $email . '</a>', $strFileInfo);
+                            }
+                            echo '<div>' . $strFileInfo . '</div>' . '<br><br>';
+                            echo '<div style="border-radius:10px; border: black solid 1px; width: 50%; padding: 5px;">';
+                            foreach ($allEmails[0] as $email) {
+                                echo $email . '<br>';
+                            }
+                            echo '</div>';
+                        }elseif ($__FILES) {
+                            echo 'Ошибка: ' . $_FILES['fileName']['error'];
+                        } else echo 'Файл не загружен!';
+
+                    ?>
+                </div>
+            </section>
+
         </div>
     </main>
 
