@@ -28,7 +28,7 @@
     <main class="main">
         <div class="main-container">
             <section id="lab2" class="lab-section">
-                <h1>Лабораторная №2</h1>
+                <h1>Лабораторная работа №2</h1>
                 <p class="task_paragraph">
                     Вариант 6: Объявить пятимерный массив с целыми числами (не менее 20-ти элементов),
                     вывести массив на экран таким образом, чтобы элементы первого уровня отображались красным цветов,
@@ -103,9 +103,132 @@
 
                         echo '</div>';
                     }
-
                 ?>
+            </section>
 
+                        <section id="lab3" class="lab-section">
+                <h1>Лабораторная работа №3</h1>
+                <p class="task_paragraph">
+                    Вариант 6: написать функцию, формирующую список файлов в указанном каталоге (включая подкаталоги),
+                    время создания которых лежит в указанном диапазоне, а имя содержит указанное сочетание символов.
+                    Данные для поиска получать через веб-форму.
+                </p>
+                <?php
+                    function setDateFormat($fieldName)
+                    {
+                        $time = strtotime($_POST[$fieldName]);
+                        if ($time) {
+                            return date('Y-m-d', $time);
+                        } else return false;
+                    }
+
+                    function getDateInterval()
+                    {
+                        $data = array();
+                        if ($data['dateFrom'] = setDateFormat('dateFrom')) {
+                            if ($data['dateTo'] = setDateFormat('dateTo')) {
+                                return $data;
+                            }
+                        }
+                        return false;
+                    }
+
+                    function findFiles($dir, $name, $maxDate, $minDate)
+                    {
+                        $allFiles = scandir($dir);
+                        $directory = new \RecursiveDirectoryIterator($dir);
+                        $filter = new \RecursiveCallbackFilterIterator($directory, function ($current, $key, $iterator) {
+                            if ($current->getFilename()[0] === '.') {
+                                return FALSE;
+                            }
+                            if (date('Y-m-d', $current->getCTime()) > $maxDate) {
+                                return FALSE;
+                            }
+                            if (date('Y-m-d', $current->getCTime()) < $minDate) {
+                                return FALSE;
+                            }
+                            return is_int(strpos($current->getFilename(), $name));
+                        });
+                        $findedFiles = array();
+                        $iterator = new \RecursiveIteratorIterator($filter);
+                        foreach ($iterator as $info) {
+                            $findedFiles[] = $info->getPathname();
+                        }
+                        print_r($findedFiles);
+                        return $findedFiles;
+                    }
+
+                    $name = '';
+                    $maxDate = '';
+                    $minDate = '';
+
+                    $errorField = '';
+                    $errorVerdict = '';
+                    $errorDir = '';
+                    $errorDataFrom = '';
+                    $errorDataTo = '';
+                    $errorName = '';
+
+                    $error = false;
+                    if (isset($_POST['search'])) {
+                        if ((!isset($_POST['dir'])) || $_POST['dir'] == '') {
+                            $errorDir = 'Обязательное поле!';
+                            $error = true;
+                        } elseif (!file_exists($_POST['dir'])) {
+                            $errorDir = 'Каталог не найден';
+                            $error = true;
+                        }
+                        $info = getDateInterval();
+                        if (!$info) {
+                            $errorDataFrom = 'Некорректный формат даты!';
+                            $error = true;
+                        } else
+                        {
+                            if ($info['dateFrom'] > $info['dateTo']) {
+                                $errorDataFrom = 'Не может быть больше верхней границы!';
+                                $error = true;
+                            }
+                        }
+                        if (!isset($_POST['name']) || $_POST['name'] == '') {
+                            $errorName = 'Обязательное поле!';
+                            $error = true;
+                        }
+                        if (!$error) {
+                            $minDate = $info['dateFrom'];
+                            $maxDate = $info['dateTo'];
+                            $name = $_POST['name'];
+                            echo '<div id="lab3_solution" class="task_solution">';
+                            $files = findFiles($_POST['dir'], $name, $maxDate, $minDate);
+                            if ($files) {
+                                echo '<ul style="list-style: none; font-size: 25px;">';
+                                for ($i = 0; $i < count($files); $i++) {
+                                    echo '<li>', $files[$i], '</li>';
+                                }
+                                echo '</ul>';
+                            }
+                            echo '</div>';
+                        }
+                    }
+                ?>
+                <div id="lab3_form">
+                    <?php
+                        function createField($text, $fieldType, $fieldName, $errorText){
+                            echo $text,'<input type = "',$fieldType,'" name = "', $fieldName, '" value = "', $_POST[$fieldName], '"><br>';
+                            echo '<div style = "color:red">',$errorText,"</div>";
+                            echo '<br>';
+                        }
+                    ?>
+                    <form action="TASKS.php#lab3" method="POST" class="lab-form">
+                        <?php
+                        createField('Каталог для поиска:       ', 'text', 'dir', $errorDir);
+                        createField('Начальная дата создания:  ', 'date', 'dateFrom', $errorDataFrom);
+                        createField('Конечная дата создания:   ', 'date', 'dateTo', $errorDataTo);
+                        createField('Часть имени файла:        ', 'text', 'name', $errorName);
+                        ?>
+
+                        <input type="submit" name="search" value="Поиск файла!">
+                    </form>
+                </div>
             </section>
         </div>
     </main>
