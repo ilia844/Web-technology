@@ -268,7 +268,7 @@
 
                         if ($_FILES && $_FILES['fileName']['error']== UPLOAD_ERR_OK)
                         {
-                            $uploads_dir = 'Y:/Programs/Web-server/bin/php/upload';
+                            $uploads_dir = '../../../../../bin/php/upload';
                             $name = basename($_FILES['fileName']['name']);
                             $tmp_name = $_FILES['fileName']['tmp_name'];
                             move_uploaded_file($tmp_name, "$uploads_dir/$name");
