@@ -418,14 +418,11 @@
                             } else return false;
                         }
 
-                        require 'includes/PHPMailer.php';
-                        require 'includes/SMTP.php';
-                        require 'includes/Exception.php';
-
                         use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\SMTP;
                         use PHPMailer\PHPMailer\Exception;
 
+                        require 'vendor/autoload.php';
 
                         $data = $_POST;
                         $adminEmail = 'w5332660@mail.ru';
