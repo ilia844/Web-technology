@@ -391,6 +391,150 @@
                     <?php endif; ?>
                 </div>
             </section>
+
+            <section id="lab7" class="lab-section">
+                <h1>Лабораторная работа 7</h1>
+                <p class="task_paragraph">
+                    Вариант 1: Выведите форму обратной связи на сайте со следующими полями: «Имя», «Телефон»,  «Email»,  «Тема»,
+                    «Текст сообщения» и кнопкой «Отправить». Получите все данные из формы, проверьте их правильность,
+                    при ошибке выведите соответствующее сообщение, оставив  введенные в полях формы,
+                    при успешном результате проверки - отправьте письмо. Вышлите ответ на почту отправителя
+                    "с благодарностью за отправленное сообщение  и скором ответе".
+                </p><br>
+                <div class="task_solution">
+
+                    <?php
+                        function isEmailCorrect($strEmail) {
+                            $regEx = '/^[a-zA-Z0-9_+\-.]+@[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,4}$/';
+                            if (preg_match($regEx, $strEmail)) {
+                                return true;
+                            } else return false;
+                        }
+
+                        function isNumberCorrect($strEmail) {
+                            $regEx = '/^\+375[0-9]{9}/';
+                            if (preg_match($regEx, $strEmail)) {
+                                return true;
+                            } else return false;
+                        }
+
+                        use PHPMailer\PHPMailer\PHPMailer;
+                        use PHPMailer\PHPMailer\SMTP;
+                        use PHPMailer\PHPMailer\Exception;
+
+                        require 'vendor/autoload.php';
+
+                        $data = $_POST;
+                        $adminEmail = 'w5332660@mail.ru';
+
+                        $errName = "";
+                        $errNumber = "";
+                        $errEmail = "";
+                        $errSubject = "";
+                        $errMessage = "";
+                        $correctData = true;
+                        if (isset($data['send'])) {
+
+                            if ((mb_strlen($data['name']) < 2) || (mb_strlen($data['name']) > 20)) {
+                                $errName = "Пожалуйста введите корректное имя!";
+                                $correctData = false;
+                            }
+                            //$regEx = '/^[a-zA-Z0-9_+\-.]+@[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,4}$/';
+                            if (!isNumberCorrect($data['number'])) {
+                                $errNumber = "Пожалуйста введите корректный номер телефона (+375..)";
+                                $correctData = false;
+                            }
+                            if (!isEmailCorrect($data['email'])) {
+                                $errEmail = "Пожалуйста введите корректный email";
+                                $correctData = false;
+                            }
+                            if ((mb_strlen($data['subject']) < 2) || (mb_strlen($data['subject']) > 30)) {
+                                $errSubject = "Тема должна содержать от 2 до 30 символов";
+                                $correctData = false;
+                            }
+                            if (mb_strlen($data['message']) == 0) {
+                                $errMessage = "Пожалуйста введите сообщение";
+                                $correctData = false;
+                            }
+
+                            if ($correctData) {
+                                ini_set('error_reporting', E_ALL);
+                                ini_set('display_errors', 1);
+                                $mail = new PHPMailer();
+                                $mail->isSMTP();
+                                $mail->SMTPAuth = 'true';
+                                $mail->Host = 'smtp.yandex.ru';
+                                $mail->SMTPSecure = 'ssl';
+                                $mail->Port = '465';
+                                $mail->Username = 'ilia844';
+                                $mail->Password = 'password';
+                                $mail->Subject = $data['subject'];
+                                $mail->setFrom($data['email']);
+                                $mail->Body = $data['message'];
+                                $mail->addAddress($adminEmail);
+                                if ($mail->Send()) {
+                                    $mail->Host = 'smtp.yandex.ru';
+                                    $mail->Username = $adminEmail;
+                                    $subject = "Ответ администрации";
+                                    $mail->Subject = $subject;
+                                    $mail->setFrom($adminEmail);
+                                    $message = $data['name'].", благодарим вас за оставленное сообщение. В скором времени вам ответят.";
+                                    $mail->Body = $message;
+                                    $mail->addAddress($data['email']);
+                                    $mail->Send()
+
+                                    echo '<span style="color: green">Письмо успешно отправлено!</span>';
+                                } echo '<span style="color: red">Письмо не отправлено!</span>';
+                                $mail->smtpClose();
+
+                                /*$to = $adminEmail;
+                                $from = $data['email'];
+                                $subject = "=?utf-8?B?".base64_encode($data['subject'])."?=";
+                                $message = wordwrap($data['message'], 70, "\r\n");
+                                $message = "$message\r\nИмя: ".$data['name']."\r\nТелефон: ".$data['number'];
+                                $headers = "From: $from\r\nReply-to: $from\r\nContent-type: text/plain; charset=utf-8\r\n";
+                                if (mail($to, $subject, $message, $headers)) {
+                                    $to = $data['email'];
+                                    $from = $adminEmail;
+                                    $subject = "=?utf-8?B?".base64_encode("Ответ администрации")."?=";
+                                    $message = $data['name'].", благодарим вас за оставленное сообщение. В скором времени вам ответят.";
+                                    $message = wordwrap($message, 70, "\r\n");
+                                    $headers = "From: $from\r\nReply-to: $from\r\nContent-type: text/plain; charset=utf-8\r\n";
+                                    echo '<span style="color: green">Письмо успешно доставлено!</span>';
+                                } echo '<span style="color: red">Письмо не отправлено!</span>';*/
+                            }
+                        }
+                    ?>
+
+                    <h2>Связь с администрацией</h2>
+                    <form action="TASKS.php#lab7" method="POST"><hr>
+
+                        <strong>Имя: </strong><br>
+                        <input type="text" name="name" value="<?php echo @$data['name'] ?>"><br>
+                        <span style="color: red;"><?php echo $errName ?></span><br><br>
+
+                        <strong>Телефон: </strong><br>
+                        <input type="text" name="number" value="<?php echo @$data['number'] ?>"><br>
+                        <span style="color: red;"><?php echo $errNumber ?></span><br><br>
+
+                        <strong>Email: </strong><br>
+                        <input type="text" name="email" value="<?php echo @$data['email'] ?>"><br>
+                        <span style="color: red;"><?php echo $errEmail ?></span><br><br>
+
+                        <strong>Тема: </strong><br>
+                        <input type="text" name="subject" value="<?php echo @$data['subject'] ?>"><br>
+                        <span style="color: red;"><?php echo $errSubject ?></span><br><br>
+
+                        <strong>Сообщение: </strong><br>
+                        <textarea name="message" cols="50" rows="10"><?php echo @$data['message'] ?></textarea><br>
+                        <span style="color: red;"><?php echo $errMessage ?></span><br><br>
+
+                        <input type="submit" name="send" value="Отправить">
+                    </form>
+
+                </div>
+            </section>
+
         </div>
     </main>
 
