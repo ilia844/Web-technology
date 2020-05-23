@@ -26,6 +26,7 @@
         </div>
     </header>
     <section class="price-section_background">
+        <?php include "visitCount.php"; ?>
         <div class="main-container">
             <div class="pricing-info">
                 <h1>Стоимость абонементов</h1>

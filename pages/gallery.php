@@ -27,6 +27,7 @@
         </div>
     </header>
     <section class="gallery">
+        <?php include "visitCount.php"; ?>
         <div class="main-container">
             <div class="equipment-zone">
                 <h1>КАРДИО – ЗОНА С 30 ТОПОВЫМИ ТРЕНАЖЕРАМИ LIFEFITNESS И TESHNOGYM CARDIOTRONS С ВОЗМОЖНОСТЬЮ ВЫХОДА В ИНТЕРНЕТ И ПРОСЛУШИВАНИЯ МУЗЫКИ.</h1>

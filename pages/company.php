@@ -26,6 +26,7 @@
         </div>
     </header>
     <section class="company_background">
+        <?php include "visitCount.php"; ?>
         <div class="main-container">
             <div class="company-info">
                 <h1>GymHouse фитнес-клуб нового поколения</h1>

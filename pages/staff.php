@@ -26,6 +26,7 @@
         </div>
     </header>
     <section class="staff_background">
+        <?php include "visitCount.php"; ?>
         <div class="main-container">
             <div class="staff-information">
                 <div class="introduction">

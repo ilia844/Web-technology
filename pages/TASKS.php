@@ -26,6 +26,7 @@
     </header>
 
     <main class="main">
+        <?php include "visitCount.php"; ?>
         <div class="main-container">
             <section id="lab2" class="lab-section">
                 <h1>Лабораторная работа №2</h1>
@@ -481,7 +482,7 @@
                                     $message = $data['name'].", благодарим вас за оставленное сообщение. В скором времени вам ответят.";
                                     $mail->Body = $message;
                                     $mail->addAddress($data['email']);
-                                    $mail->Send()
+                                    $mail->Send();
 
                                     echo '<span style="color: green">Письмо успешно отправлено!</span>';
                                 } echo '<span style="color: red">Письмо не отправлено!</span>';
@@ -535,6 +536,48 @@
                 </div>
             </section>
 
+            <section id="lab8" class="lab-section">
+                <h1>Лабораторная работа 8</h1>
+                <p class="task_paragraph">
+                    Вариант 6: написать скрипт, отправляющий администратору статистику посещения ресурса за день<br>
+                    (название страницы, количество просмотров).
+                </p><br>
+                <div class="task_solution">
+                    <?php
+
+                        $dataNow = date("Y-m-d");
+                        echo "<h2>Статистика посещения ресурса (<span style=\"color: green;\">".$dataNow."</span>)</h2><br>";
+                        echo '<table style="font-size: 20px; color: blue; cellspacing: 2;" cellspacing="5">';
+                        echo
+                            '<tr>
+                                <td>Страница</td>
+                                <td>Дата</td>
+                                <td>IP-пользователя</td>
+                            </tr>';
+                        $pagesArray = array('price.php', 'company.php', 'staff.php', 'gallery.php', 'TASKS.php');
+                        $visitsCount = array("price.php" => 0, "company.php" => 0, "staff.php" => 0, "gallery.php" => 0, "TASKS.php" => 0);
+                        $mysqli = new mysqli("localhost", "root", "", "laba7");
+                        foreach ($pagesArray as $pageName) {
+                            $query = "SELECT * FROM visits WHERE page='$pageName' AND data='$dataNow'";
+                            $res = $mysqli->query($query);
+                            $res->data_seek(0);
+                            while ($row = $res->fetch_assoc()) {
+                                $visitsCount[$pageName]++;
+                                echo
+                                    '<tr>
+                                        <td>' . $row['page'] . '</td>
+                                        <td>' . $row['data'] . '</td>
+                                        <td>' . $row['visitorIp'] . '</td>
+                                    </tr>';
+                            }
+                        }
+                        echo '</table><br>';
+                        foreach ($visitsCount as $key => $value) {
+                            echo '<div style="color: green; font-size: 25px;">За сегодня страница '.$key.' посещена '.$value.'раз(а)!</div>';
+                        }
+                    ?>
+                </div>
+            </section>
         </div>
     </main>
 
